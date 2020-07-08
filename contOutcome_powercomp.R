@@ -9,7 +9,7 @@ twoarmcomp <- function(NSIMS, n = seq(50, 150, by = 50), gam, pow = 0.8, data){
   ti.nopred <- rep(NA,len)
   ti.lin <- rep(NA,len)
   
-  set.seed(4529)
+  set.seed(12345)
   pb <- txtProgressBar(0,len*NSIMS,style=3)
   for(j in 1:len){
     pvals.pred.p<-rep(NA,NSIMS)
