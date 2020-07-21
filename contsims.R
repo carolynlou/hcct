@@ -36,7 +36,7 @@ for(j in 1:len){
     X.tx.1<-rnorm(n.tx,0,sigmax)
     e.tx.1<-rnorm(n.tx,0,sigmae)
     Y.tx.1.p<-alpha+gam*A.tx.1+beta*X.tx.1+e.tx.1
-    Y.tx.1.ti<-alpha+0*A.tx.1+beta*X.tx.1+e.tx.1 #no tx effect to test ti
+    Y.tx.1.ti<-alpha+1*A.tx.1+beta*X.tx.1+e.tx.1 #no tx effect to test ti
     
     #treatment arm 2
     A.tx.2<-rep(0,n.tx) #trial controls
