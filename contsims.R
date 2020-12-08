@@ -32,25 +32,25 @@ for(j in 1:len){
     n.tx <- n[j]/2
     
     #treatment arm 1
-    A.tx.1<-rep(1,n.tx) #trial txd
-    X.tx.1<-rnorm(n.tx,0,sigmax)
-    e.tx.1<-rnorm(n.tx,0,sigmae)
-    Y.tx.1.p<-alpha+gam*A.tx.1+beta*X.tx.1+e.tx.1
-    Y.tx.1.ti<-alpha+0*A.tx.1+beta*X.tx.1+e.tx.1 #no tx effect to test ti
+    A.tx.1 <- rep(1,n.tx) #trial txd
+    X.tx.1 <- rnorm(n.tx,0,sigmax)
+    e.tx.1 <- rnorm(n.tx,0,sigmae)
+    Y.tx.1.p <- alpha + (gam + rnorm(n.tx, 0, gam*0.1))*A.tx.1 + beta*X.tx.1 + e.tx.1
+    Y.tx.1.ti <- alpha + 0*A.tx.1 + beta*X.tx.1 + e.tx.1 #no tx effect to test ti
     
     #treatment arm 2
-    A.tx.2<-rep(0,n.tx) #trial controls
-    X.tx.2<-rnorm(n.tx,0,sigmax)
-    e.tx.2<-rnorm(n.tx,0,sigmae)
-    Y.tx.2.p<-alpha+gam*A.tx.2+beta*X.tx.2+e.tx.2
-    Y.tx.2.ti<-alpha+0*A.tx.2+beta*X.tx.2+e.tx.2 #no tx effect to test ti
+    A.tx.2 <- rep(0,n.tx) #trial controls
+    X.tx.2 <- rnorm(n.tx,0,sigmax)
+    e.tx.2 <- rnorm(n.tx,0,sigmae)
+    Y.tx.2.p <- alpha + (gam + rnorm(n.tx, 0, gam*0.1))*A.tx.2 + beta*X.tx.2 + e.tx.2
+    Y.tx.2.ti <- alpha + 0*A.tx.2 + beta*X.tx.2 + e.tx.2 #no tx effect to test ti
     
     
     #testing for tx effect across groups
-    Y.tx.p<-c(Y.tx.1.p,Y.tx.2.p)
-    Y.tx.ti<-c(Y.tx.1.ti,Y.tx.2.ti)
-    X.tx<-c(X.tx.1,X.tx.2)
-    A.tx<-c(A.tx.1,A.tx.2)
+    Y.tx.p <- c(Y.tx.1.p,Y.tx.2.p)
+    Y.tx.ti <- c(Y.tx.1.ti,Y.tx.2.ti)
+    X.tx <- c(X.tx.1,X.tx.2)
+    A.tx <- c(A.tx.1,A.tx.2)
     
     #---collecting without pred pvals---#
     pvals.nopred.p[i] <- summary(lm(Y.tx.p ~ A.tx))$coef[2,4]
